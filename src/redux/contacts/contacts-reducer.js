@@ -14,16 +14,10 @@ import {
   changeFilter,
 } from './contacts-actions';
 
-import store from '../store';
-
-// const parseContacts = JSON.parse(localStorage.getItem('contacts'));
-// const initialContacts = parseContacts ? parseContacts : [];
-
 const contacts = createReducer([], {
   [fetchContactSuccess]: (_, { payload }) => payload,
   [addContactSuccess]: (state, action) => {
     const newContacts = [...state, action.payload];
-    // localStorage.setItem('contacts', JSON.stringify(newContacts));
 
     return newContacts;
   },
@@ -32,8 +26,6 @@ const contacts = createReducer([], {
     const filteredContacts = state.filter(
       contact => contact.id !== action.payload,
     );
-
-    // localStorage.setItem('contacts', JSON.stringify(filteredContacts));
 
     return filteredContacts;
   },

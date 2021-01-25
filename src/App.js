@@ -3,14 +3,17 @@ import { useEffect } from 'react';
 import ContactForm from './components/ContactForm/ContactForm';
 import Filter from './components/Filter/Filter';
 import ContactList from './components/ContactList/ContactList';
-import contactsOperations from './redux/contacts/contacts-operations';
+
+// import contactsOperations from './redux/contacts/contacts-operations';
+// import contactsSelectors from './redux/contacts/contacts-selectors';
+
+import { contactsOperations, contactsSelectors } from './redux/contacts';
 
 import './App.css';
 
 function App({ fetchContacts, isLoadingContact }) {
   useEffect(() => {
     fetchContacts();
-    // console.log(fetchContacts());
   }, []);
 
   return (
@@ -31,7 +34,7 @@ function App({ fetchContacts, isLoadingContact }) {
 }
 
 const mapStateToProps = state => ({
-  isLoadingContact: state.contacts.loading,
+  isLoadingContact: contactsSelectors.getLoading(state),
 });
 
 const mapDispatchToProps = dispatch => ({
